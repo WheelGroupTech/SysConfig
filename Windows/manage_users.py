@@ -3,6 +3,8 @@
 #
 # Copyright (c) 2024 Daniel M. Teal
 #
+# License: MIT License
+#
 # Python script to manage users on a system.
 #-----------------------------------------------------------------------------
 """manage_users.py""" # for pylint

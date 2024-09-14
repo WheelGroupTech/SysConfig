@@ -3,6 +3,8 @@
 #
 # Copyright (c) 2024 Daniel M. Teal
 #
+# License: MIT License
+#
 # Python script to scan installed applications and delete unauthorized apps.
 #-----------------------------------------------------------------------------
 """manage_applications.py""" # for pylint

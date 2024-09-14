@@ -3,6 +3,8 @@
 #
 # Copyright (c) 2024 Daniel M. Teal
 #
+# License: MIT License
+#
 # Python script to manage system security policy.
 #-----------------------------------------------------------------------------
 """manage_policy.py""" # for pylint
