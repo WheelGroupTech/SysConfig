@@ -57,7 +57,7 @@ def parse_url_file(url_file_path):
 #-----------------------------------------------------------------------------
 # parse_readme_content()
 #
-# This function parses CyberPatriot readme file to obtain user information
+# This function parses readme file to obtain user information
 #-----------------------------------------------------------------------------
 def parse_readme_content(content):
     """Parses the readme content"""
