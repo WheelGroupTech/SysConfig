@@ -5,7 +5,7 @@
 #
 # Python script to scan installed applications and delete unauthorized apps.
 #-----------------------------------------------------------------------------
-"""programs.py""" # for pylint
+"""manage_applications.py""" # for pylint
 # pylint: disable=line-too-long
 
 import ctypes
