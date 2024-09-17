@@ -52,7 +52,7 @@ def reg_query_value(key, name):
 #-----------------------------------------------------------------------------
 # validate_command_pathname()
 #
-# Unquoted command strings with a space in the pathname will not work ehen
+# Unquoted command strings with a space in the pathname will not work when
 # passed as a command because the shell interpreter will only use the start
 # of the pathname instead of the full pathname.  For example, the following path:
 #
