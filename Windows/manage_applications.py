@@ -135,6 +135,58 @@ def enumerate_apps_from_regkey(key):
 
 
 #-----------------------------------------------------------------------------
+# enumerate_app_from_user()
+#
+# Attempt to open the specified subkey for the user.  If it exists, then
+# enumerate the applications from it.
+#-----------------------------------------------------------------------------
+def enumerate_app_from_user(user_key, sub_key):
+    """Enumerates applications from the specified user key"""
+
+    try:
+        registry_key = winreg.OpenKey(user_key, sub_key)
+        enumerate_apps_from_regkey(registry_key)
+        winreg.CloseKey(registry_key)
+
+    except WindowsError:
+        pass
+
+
+#-----------------------------------------------------------------------------
+# enumerate_apps_from_users()
+#
+# Applications can be installed for just a user and not system wide.  Scan
+# the HKEY_USERS key to enumerate the SIDs of all users and attempt to
+# enumerate applications per user.
+#-----------------------------------------------------------------------------
+def enumerate_apps_from_users():
+    """Enumerates the applications installed for users"""
+    i = 0
+    while True:
+        try:
+            # Get the next subkey name
+            user_sid = winreg.EnumKey(winreg.HKEY_USERS, i)
+
+            # Open the subkey
+            user_sid_key = winreg.OpenKey(winreg.HKEY_USERS, user_sid)
+
+            # Enumerate all of the applications for the user
+            enumerate_app_from_user(user_sid_key, APPKEY1)
+
+            # Enumerate all of the WOW64 applications for the user
+            enumerate_app_from_user(user_sid_key, APPKEY2)
+
+            # Close the subkey
+            winreg.CloseKey(user_sid_key)
+
+            # Advance to the next subkey
+            i += 1
+
+        except WindowsError:
+            break
+
+
+#-----------------------------------------------------------------------------
 # run_command()
 #-----------------------------------------------------------------------------
 def run_command(command):
@@ -183,6 +235,8 @@ def main():
     registry_key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, APPKEY2)
     enumerate_apps_from_regkey(registry_key)
     winreg.CloseKey(registry_key)
+
+    enumerate_apps_from_users()
 
     # Parse through the installed applications
     for app in INSTALLED_APPS:
