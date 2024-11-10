@@ -84,16 +84,17 @@ def parse_readme_content(content):
             user_section = False
         else:
             words = line.split()
-            if admin_section is True:
-                if re.search('(you)', line):
-                    MASTER_ACCOUNT.append(words[0])
+            if len(words) > 0:
+                if admin_section is True:
+                    if re.search('(you)', line):
+                        MASTER_ACCOUNT.append(words[0])
+                        ALL_ACCOUNTS.append(words[0])
+                    elif len(words) == 1:
+                        ADMIN_ACCOUNTS.append(words[0])
+                        ALL_ACCOUNTS.append(words[0])
+                if user_section is True:
+                    USER_ACCOUNTS.append(words[0])
                     ALL_ACCOUNTS.append(words[0])
-                elif len(words) == 1:
-                    ADMIN_ACCOUNTS.append(words[0])
-                    ALL_ACCOUNTS.append(words[0])
-            if user_section is True:
-                USER_ACCOUNTS.append(words[0])
-                ALL_ACCOUNTS.append(words[0])
 
     return True
 
